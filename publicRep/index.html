@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="Style.css" rel="stylesheet">
+    <script src="wp.js" defer></script>
+</head>
+<body >
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">About</a></li>
+        </ul>
+    </nav>
+    <input id="login_button" type="button" value="Login" onclick="addLogin_form()">
+    <div id="img_div">
+        <h1 class="left">The Norwich Testing Initiative (NTI)</h1>
+    </div>
+</header>
+<main>
+    <div id="content" style="display: flex">
+        <div id="form_wrapper">
+            <form id="form_login">
+                <h1>LOGIN</h1>
+                <label for="email_login"></label><input id="email_login" type="email" placeholder="Email">
+                <label for="password_login"></label><input id="password_login" type="password" placeholder="Password">
+                <label for="login_login"></label><input id="login_login" type="submit" value="Login">
+                <p style="font-size: small"><i>Haven't signed up? <span style="cursor: pointer; color: #60ef9c" onclick="addSign_up_form()">join now</span></i></p>
+            </form>
+            <form id="form_sign-up" action = "/booking-signup" method = "post">
+                <h1>SIGN UP</h1>
+                <label for="first_name_sign-up"></label><input id="first_name_sign-up" name ="fName" type="text" placeholder="First Name">
+                <label for="last_name_sign-up"></label><input id="last_name_sign-up" name = "lName"type="text" placeholder="Last Name">
+                <label for="phone_sign-up"></label><input id="phone_sign-up" name = "phoneNum" type="number" placeholder="Phone number">
+                <label for="house_no_sign-up"></label><input id="house_no_sign-up" name = "houseNo" type="number" placeholder="House Number">
+                <label for="post_code_sign-up"></label><input id="post_code_sign-up" name = "postCode" type="number" placeholder="Post Code">
+                <label for="user_name_sign-up"></label><input id="user_name_sign-up" name = "usrName"type="text" placeholder="User Name">
+                <label for="age_sign-up"></label><input id="age_sign-up" name = "age"type="number" placeholder="Age">
+                <label for="email_sign-up"></label><input id="email_sign-up" name = "email" type="email" placeholder="Email">
+                <label for="password_sign-up"></label><input id="password_sign-up" name = "pwd" type="password" placeholder="Password">
+                <div id="radio">
+                    <label for="male">male</label><input id="male" name="male" type="radio">
+                    <label for="female">female</label><input id="female" name="female" type="radio">
+                    <label for="non-binary">Non-Binary</label><input id="non-binary" name="nonBinary" type="radio">
+                </div>
+                <label for="login_sign-up"></label><input id="login_sign-up" type="submit" value="Submit">
+            </form>
+        </div>
+        <div style="height: 1000px; width: 20%; border: 2px solid red; margin-left: 10px;"></div>
+        <div style="width: 60%; border: 2px solid blue"></div>
+        <div style="height: 1000px; width: 20%; border: 2px solid red; margin-right: 10px;"></div>
+
+    </div>
+</main>
+<footer>
+    <p><i>caleb adeyemo</i></p>
+</footer>
+</body>
+</html>
