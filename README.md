@@ -1,5 +1,5 @@
 # WBP-Module-Assignment-2
- D2's solution for web-based-programming assignment 2
+ Group D2's solution for web-based-programming assignment 2
  
 # Guide
 
