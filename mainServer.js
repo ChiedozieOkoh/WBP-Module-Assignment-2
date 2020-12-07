@@ -48,8 +48,15 @@ function containsSpace(inputString){
   return regexSpace.test(inputString);
 }
 function containsSpecialChars(inputString){
-  let regexSPChar = /[^\W\0-9]/;
-  return regexSPChar.test(inputString);
+  let regexSPChar = /[A-Za-z0-9]/;
+  for (char = 0 ; char < inputString.length ; char++){
+      result = regexSPChar.test(inputString[char]);
+    if (result == false){
+      return true ;
+    }
+  }
+
+  return false;
 }
 
 function validateBodyMember(element,indexOfDatatype){
@@ -141,7 +148,7 @@ client.get('/:foo/book',function (req , res){
 
 client.post('/booking-signup',[
   // replaces special characters with their html counterparts
-  body('fName').trim().isLength({min :2}),
+  body('fName').trim().escape().isLength({min :2}),
   body('lName').trim().escape().isLength({min : 2}),
   body('phoneNum').trim().escape().isLength({min:8}),
   body('houseNo').trim().escape().isLength({min:1}),
@@ -164,6 +171,8 @@ client.post('/booking-signup',[
    }
  let errs = "";
  res.set('Content-Type','text/html');
+ console.log(req.body.male + ": male button");
+ console.log(req.body);
   errs = validateBodyMember(req.body.fName,TEXT);
   console.log(req.body.fName);
   console.log(errs);
