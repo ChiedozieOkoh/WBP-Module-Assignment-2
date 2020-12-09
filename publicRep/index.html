@@ -24,18 +24,18 @@
 <main>
     <div id="content" style="display: flex">
         <div id="form_wrapper">
-            <form id="form_sign-up" action="" method="post" onsubmit= "return validate_form()">
+            <form id="form_sign-up" action="/booking-signup" method="post" onsubmit= "return validate_form()">
                 <h1>SIGN UP</h1>
-                <label for="first_name_sign-up"></label><input id="first_name_sign-up" type="text" placeholder="First Name" required>
-                <label for="last_name_sign-up"></label><input id="last_name_sign-up" type="text" placeholder="Last Name" required>
-                <label for="phone_sign-up"></label><input id="phone_sign-up" type="number" placeholder="Phone number" required>
-                <label for="house_no_sign-up"></label><input id="house_no_sign-up" type="number" placeholder="House Number">
-                <label for="post_code_sign-up"></label><input id="post_code_sign-up" type="text" placeholder="Post Code">
-                <label for="user_name_sign-up"></label><input id="user_name_sign-up" type="text" placeholder="User Name" required>
-                <label for="age_sign-up"></label><input id="age_sign-up" type="number" placeholder="Age" required>
-                <label for="email_sign-up"></label><input id="email_sign-up" type="email" placeholder="Email">
+                <label for="first_name_sign-up"></label><input id="first_name_sign-up"  name = "fName" type="text" placeholder="First Name" required>
+                <label for="last_name_sign-up"></label><input id="last_name_sign-up" name = "lName"type="text" placeholder="Last Name" required>
+                <label for="phone_sign-up"></label><input id="phone_sign-up" name = "phoneNum"type="number" placeholder="Phone number" required>
+                <label for="house_no_sign-up"></label><input id="house_no_sign-up" name = "houseNo"type="number" placeholder="House Number">
+                <label for="post_code_sign-up"></label><input id="post_code_sign-up" name = "postCode"type="text" placeholder="Post Code">
+                <label for="user_name_sign-up"></label><input id="user_name_sign-up" name ="usrName"type="text" placeholder="User Name" required>
+                <label for="age_sign-up"></label><input id="age_sign-up" type="number" name = "age"placeholder="Age" required>
+                <label for="email_sign-up"></label><input id="email_sign-up" type="email" name = "email" placeholder="Email">
                 <label for="ethnicity_sign-up">Ethnicity</label>
-                <select id="ethnicity_sign-up" name="ethnicity_sign-up">
+                <select id="ethnicity_sign-up" name = "ethnicity">
     				<option value="White">White</option>
     				<option value="Mixed">Mixed</option>
     				<option value="Asian">Asian</option>
@@ -44,9 +44,9 @@
     				<option value="Other">Other</option>
   				</select>
 
-                
 
-                <label for="password_sign-up"></label><input id="password_sign-up" type="password" placeholder="Password" required>
+
+                <label for="password_sign-up"></label><input id="password_sign-up" name = "pwd"type="password" placeholder="Password" required>
                 <div id="radio" style="font-family: 'Arial Rounded MT Bold',serif;">
                     <label for="male">male</label><input id="male" name="gender_sign-up" type="radio">
                     <label for="female">female</label><input id="female" name="gender_sign-up" type="radio">

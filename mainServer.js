@@ -19,7 +19,7 @@ const ALPHA_NUMERIC = 2;
 
 
 class Form{
-    constructor(fName , lName , pNumber,houseNumber,postCode,usrName,age,email,password){
+    constructor(fName , lName , pNumber,houseNumber,postCode,usrName,age,email,ethnicity,password){
       this.fName = fName;
       this.lName = lName;
       this.pNumber = pNumber;
@@ -28,6 +28,7 @@ class Form{
       this.usrName = usrName;
       this.age = age;
       this.email = email;
+      this.ethnicity = ethnicity;
       this.password = password;
 
     }
@@ -173,6 +174,7 @@ client.post('/booking-signup',[
  res.set('Content-Type','text/html');
  console.log(req.body.male + ": male button");
  console.log(req.body);
+ console.log("ethnicity" + req.body.ethnicity);
   errs = validateBodyMember(req.body.fName,TEXT);
   console.log(req.body.fName);
   console.log(errs);
@@ -280,6 +282,7 @@ if (errs != "NO_ERROR"){
     req.body.usrName,
     req.body.age,
     req.body.email,
+    req.body.ethnicity,
     req.body.pwd
   );
 
