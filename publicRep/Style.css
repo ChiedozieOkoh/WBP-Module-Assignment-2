@@ -72,6 +72,19 @@ input{
     width: 200px;
     color: white;
 }
+
+select{
+    background: none;
+    border-radius: 24px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    text-align: center;
+    width: 200px;
+    color: black;
+}
+
 input:hover{
     background: grey;
     transition: 1s;
