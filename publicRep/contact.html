@@ -8,7 +8,7 @@
     <script>
     function validateForm(){
       console.log(document.forms[0].email.value);
-      if (document.forms[0].email.value == ""){
+      if (document.forms[0].email.value === ""){
 
         alert("Please enter an email address");
         return false;
