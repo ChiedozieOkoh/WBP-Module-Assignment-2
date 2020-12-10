@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="Style.css" rel="stylesheet">
+    <script src="wp.js" defer></script>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="form.html">Form</a></li>
+        <li><a href="team.html">Team</a></li>
+    </ul>
+</nav>
+<div id="content" style="display: flex">
+    <div id="form_wrapper">
+        <form id="form_sign-up" action="/booking-signup" method="post" onsubmit= "return validate_form()">
+            <h1>SIGN UP</h1>
+            <label for="first_name_sign-up"></label><input id="first_name_sign-up"  name = "fName" type="text" placeholder="First Name" required>
+            <label for="last_name_sign-up"></label><input id="last_name_sign-up" name = "lName" type="text" placeholder="Last Name" required>
+            <label for="phone_sign-up"></label><input id="phone_sign-up" name = "phoneNum" type="number" placeholder="Phone number" required>
+            <label for="house_no_sign-up"></label><input id="house_no_sign-up" name = "houseNo" type="number" placeholder="House Number">
+            <label for="post_code_sign-up"></label><input id="post_code_sign-up" name = "postCode" type="text" placeholder="Post Code">
+            <label for="user_name_sign-up"></label><input id="user_name_sign-up" name ="usrName" type="text" placeholder="User Name" required>
+            <label for="age_sign-up"></label><input id="age_sign-up" type="number" name = "age" placeholder="Age" required>
+            <label for="email_sign-up"></label><input id="email_sign-up" type="email" name = "email" placeholder="Email">
+            <label for="password_sign-up"></label><input id="password_sign-up" name = "pwd" type="password" placeholder="Password" required>
+            <label for="ethnicity_sign-up">Ethnicity</label>
+            <select id="ethnicity_sign-up" name="ethnicity_sign-up">
+                <option value="White">White</option>
+                <option value="Mixed">Mixed</option>
+                <option value="Asian">Asian</option>
+                <option value="Black">Black</option>
+                <option value="Arab">Arab</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="week_sign-up">Week</label>
+            <select id="week_sign-up" name="week_sign-up">
+                <option value="Week_1_2">Week 1&2</option>
+                <option value="Week_2_3">Week 2&3</option>
+                <option value="Week_3_4">Week 3&4</option>
+            </select>
+            <label for="days_sign-up">Days</label>
+            <select id="days_sign-up" name="days_sign-up">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+            </select>
+            <p style="font-size: larger">First Appointment</p>
+            <div style="display: flex">
+                <label for="First-Appointment_AM">AM <input id="First-Appointment_AM" name="firstAM" type="checkbox"></label>
+                <label for="First-Appointment_PM">PM <input id="First-Appointment_PM" name="firstPm" type="checkbox"></label>
+            </div>
+            <p style="font-size: larger">Second Appointment</p>
+            <div style="display: flex">
+                <label for="Second-Appointment_AM">AM <input id="Second-Appointment_AM" name="secondAm" type="checkbox"></label>
+                <label for="Second-Appointment_PM">PM <input id="Second-Appointment_PM" name="secondPm" type="checkbox"></label>
+            </div>
+            <p style="font-size: larger">Gender</p>
+            <div id="radio" style="font-family: 'Arial Rounded MT Bold',serif; display: block">
+                <label for="male">male <input id="male" name="male_sign-up" type="checkbox"></label>
+                <label for="female">female <input id="female" name="female_sign-up" type="checkbox"></label>
+                <label for="non-binary">Non-Binary <input id="non-binary" name="nonbinary_sign-up" type="checkbox"></label>
+            </div>
+            <label for="login_sign-up"></label><input id="login_sign-up" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+</body>
+</html>

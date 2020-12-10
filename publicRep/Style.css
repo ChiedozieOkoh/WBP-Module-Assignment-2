@@ -1,4 +1,12 @@
 /* General body CSS*/
+/*References for photos
+ Tubes-----
+Unsplash.com. 2020. Photo By Bill Oxford On Unsplash. [online] Available at: https://unsplash.com/photos/tR0PPLuN6Pw [Accessed 10 December 2020].
+ Virus ----
+Unsplash.com. 2020. Photo By CDC On Unsplash. [online] Available at: https://unsplash.com/photos/w9KEokhajKw [Accessed 10 December 2020].
+The guy doing the tube thingy ------------
+Unsplash.com. 2020. Photo By Thisisengineering Raeng On Unsplash. [online] Available at: https://unsplash.com/photos/qI7USKbZY_A [Accessed 10 December 2020].
+ */
 body{
     margin: 0;
     padding: 0;
@@ -103,13 +111,39 @@ input:hover{
     transform: translate(-50%,0);
 }
 #form_sign-up{
-    display: none;
+    display: block;
     text-align: center;
     background-color: #353535;
     width: 350px;
     padding: 14px 10px;
-    z-index: 2;
 }
 #radio{
     display: flex;
 }
+/* index.html*/
+.info{
+    padding: 14px 10px;
+    background-color: #333537;
+    color: white;
+    font-family: BlinkMacSystemFont, Arial, sans-serif;
+    font-size: x-large;
+    width: 1300px;
+    margin: 30px;
+}
+#tubes{
+    width: 500px;
+    position: absolute;
+    right: 50px;
+    top: 400px;
+    z-index: -2;
+}
+#doctor{
+    width: 500px;
+    position: absolute;
+    right: 50px;
+    top: 800px;
+    margin-bottom: 20px;
+    z-index: -2;
+}
+
+
