@@ -69,7 +69,7 @@ li a:hover {
     transition: 1s;
 }
 /* Sign up Form CSS*/
-input{
+input, button{
     background: none;
     border-radius: 24px;
     display: block;
@@ -94,6 +94,10 @@ select{
 }
 
 input:hover{
+    background: grey;
+    transition: 1s;
+}
+button:hover{
     background: grey;
     transition: 1s;
 }
@@ -126,21 +130,21 @@ input:hover{
     background-color: #333537;
     color: white;
     font-family: BlinkMacSystemFont, Arial, sans-serif;
-    font-size: x-large;
+    font-size: 20px;
     width: 57%;
     margin: 30px;
 }
 #tubes{
-    width: 500px;
+    width: 450px;
     position: absolute;
-    right: 50px;
+    right: 7.5%;
     top: 400px;
     z-index: -2;
 }
 #doctor{
-    width: 500px;
+    width: 450px;
     position: absolute;
-    right: 50px;
+    right: 7.5%;
     top: 800px;
     margin-bottom: 20px;
     z-index: -2;
@@ -159,7 +163,7 @@ input:hover{
         display: none;
         width: 500px;
         position: absolute;
-        right: 50px;
+        right: 7.5%;
         top: 400px;
         z-index: -2;
     }
@@ -167,7 +171,7 @@ input:hover{
         display: none;
         width: 500px;
         position: absolute;
-        right: 50px;
+        right: 7.5%;
         top: 800px;
         margin-bottom: 20px;
         z-index: -2;

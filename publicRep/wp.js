@@ -10,13 +10,14 @@ function validate_form(){
     }//End if statement
     return true;
 }
-function change_background(){
-    if (document.getElementById("test").style.backgroundColor === "grey"){
-        document.getElementsByClassName("info").style.backgroundColor="#333537"
-        console.log("works")
+function make_big(){
+    if (document.getElementById("tubes").style.width === "450px"){
+        document.getElementById("tubes").style.width = "500px"
     }
-    if (document.getElementsByClassName("info").style.backgroundColor === "#333537"){
-        document.getElementsByClassName("info").style.backgroundColor="grey"
-        console.log("also works")
+    else document.getElementById("tubes").style.width = "450px";}
+function make_big2(){
+    if (document.getElementById("doctor").style.width === "450px"){
+        document.getElementById("doctor").style.width = "500px"
     }
+    else document.getElementById("doctor").style.width = "450px";
 }
