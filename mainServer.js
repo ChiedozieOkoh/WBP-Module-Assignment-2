@@ -115,6 +115,18 @@ function isInDatabase(email){
   //block execution until whole file is read
 
 }
+function createErrorMsg(responceObj ,field , error){
+
+     responceObj.status(400);
+     responceObj.write('<html>');
+     responceObj.write('<body>');
+     responceObj.write('<h1>Error in ' + field +" "+ error + '</h1>');
+     responceObj.write('</body>');
+     responceObj.write('</html>');
+     responceObj.end();
+     return responceObj;
+
+}
 //writes an object in JSON format
 function serObject(obj , file){
   try {
@@ -174,103 +186,50 @@ client.post('/booking-signup',[
  res.set('Content-Type','text/html');
  console.log(req.body.male + ": male button");
  console.log(req.body);
+ console.log("gender" + req.body.genderM);
  console.log("ethnicity" + req.body.ethnicity);
   errs = validateBodyMember(req.body.fName,TEXT);
   console.log(req.body.fName);
   console.log(errs);
   if (errs != "NO_ERROR"){
-     res.status(400);
-     res.write('<html>');
-     res.write('<body>');
-     res.write('<h1>Error in first name: ' + errs + '</h1>');
-     res.write('</body>');
-     res.write('</html>');
-     res.end();
-     return res;
+    console.log(errs);
+      return createErrorMsg(res,"first name",errs);
   }
+
 
   errs = validateBodyMember(req.body.lName,TEXT);
   if (errs != "NO_ERROR"){
-    res.status(400);
-    res.write('<html>');
-    res.write('<body>');
-    res.write('<h1>Error in lase name: ' + errs + '</h1>');
-    res.write('</body>');
-    res.write('</html>');
-    res.end();
-    return res;
+    return  createErrorMsg(res,"last name",errs);
   }
 
   errs = validateBodyMember(req.body.phoneNum,INTEGER);
   if (errs != "NO_ERROR"){
-    res.status(400);
-    res.write('<html>');
-    res.write('<body>');
-    res.write('<h1>Error in phone number: ' + errs + '</h1>');
-    res.write('</body>');
-    res.write('</html>');
-    res.end();
-    return res;
+    return  createErrorMsg(res," phone number",errs);
   }
 
   errs = validateBodyMember(req.body.houseNo,INTEGER);
   if (errs != "NO_ERROR"){
-    res.status(400);
-    res.write('<html>');
-    res.write('<body>');
-    res.write('<h1>Error in first house number: ' + errs + '</h1>');
-    res.write('</body>');
-    res.write('</html>');
-    res.end();
-    return res;
+    return  createErrorMsg(res,"house number",errs);
   }
 
 errs = validateBodyMember(req.body.postCode,ALPHA_NUMERIC);
 if (errs != "NO_ERROR"){
-  res.status(400);
-  res.write('<html>');
-  res.write('<body>');
-  res.write('<h1>Error in postCode: ' + errs + '</h1>');
-  res.write('</body>');
-  res.write('</html>');
-  res.end();
-  return res;
+  return  createErrorMsg(res,"post code",errs);
 }
 
 errs = validateBodyMember(req.body.usrName,ALPHA_NUMERIC);
 if (errs != "NO_ERROR"){
-  res.status(400);
-  res.write('<html>');
-  res.write('<body>');
-  res.write('<h1>Error in user name : ' + errs + '</h1>');
-  res.write('</body>');
-  res.write('</html>');
-  res.end();
-  return res;
+  return createErrorMsg(res,"user name",errs);
 }
 
 errs = validateBodyMember(req.body.age,INTEGER);
 if (errs != "NO_ERROR"){
-  res.status(400);
-  res.write('<html>');
-  res.write('<body>');
-  res.write('<h1>Error in age ' + errs + '</h1>');
-  res.write('</body>');
-  res.write('</html>');
-  res.end();
-  return res;
+  return createErrorMsg(res,"age ",errs);
 }
 
 errs = validateBodyMember(req.body.pwd,ALPHA_NUMERIC);
 if (errs != "NO_ERROR"){
-  res.status(400);
-  res.write('<html>');
-  res.write('<body>');
-  res.write('<h1>Error in password ' + errs + '</h1>');
-  res.write('</body>');
-  res.write('</html>');
-  res.end();
-  return res;
+  return createErrorMsg(res,"password",errs);
 }
 
   let newEntry = new Form(req.body.fName,
