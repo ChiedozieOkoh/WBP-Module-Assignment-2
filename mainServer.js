@@ -3,10 +3,10 @@ const fs = require('graceful-fs');
 const client = express();
 const bodyParser = require('body-parser');
 
+
 const {body,validationResult} = require('express-validator');
 
-var ReadWriteLock = require('rwlock');
-var lock = new ReadWriteLock();
+
 client.use(bodyParser.urlencoded({ extended: true }));
 client.use(bodyParser.json());
 client.use(express.static('publicRep'));
@@ -14,10 +14,10 @@ client.use(express.static('publicRep'));
 const TEXT = 0;
 const INTEGER = 1;
 const ALPHA_NUMERIC = 2;
-//const DATATYPE ["TEXT","INT","ALPHA_NUM"]
 
 
 
+// object to encapsulate form data
 class Form{
     constructor(fName , lName , pNumber,houseNumber,postCode,usrName,age,email,ethnicity,password,fA,sA,weeks,day,gender){
       this.fName = fName;
@@ -37,7 +37,7 @@ class Form{
       this.gender = gender;
     }
 }
-
+//methods to validate form input
 function containsNumber(inputString){
 
   let regexNum = /[0-9]/ ;
@@ -119,6 +119,7 @@ function isInDatabase(email){
   //block execution until whole file is read
 
 }
+// returns a html message that can be render as a responce to the user's form
 function createErrorMsg(responceObj ,field , error){
 
      responceObj.status(400);
@@ -131,6 +132,102 @@ function createErrorMsg(responceObj ,field , error){
      return responceObj;
 
 }
+// returns html error message using errors from express validator
+function createValidatorErrorMsg( responceObj , field){
+  // the express validator is only used to check minimum lengths so we can assume that any time this function is called its for that reason
+  switch (field){
+    case 'phoneNum':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in phone number: minimum length required is eight  </h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+      break;
+    case 'fName':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in first name: minimum length required is two  </h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+      break;
+    case 'lName':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in last name: minimum length required is two </h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+      break;
+    case 'houseNo':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in house number: field cannot be left empty< /h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+      break;
+    case 'postCode':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in post code: minimum length required is three</h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+      break;
+    case 'usrName':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in user name: minimum length required is two </h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+      break;
+    case 'age':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in age: field cannot be left empty</h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+      break;
+    case 'email':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in email : not a valid email address</h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+      break;
+    case 'pwd':
+    responceObj.status(400);
+    responceObj.write('<html>');
+    responceObj.write('<body>');
+    responceObj.write('<h1>Error in password: minimum length is three</h1>');
+    responceObj.write('</body>');
+    responceObj.write('</html>');
+    responceObj.end();
+    return responceObj;
+  }
+
+}
 //writes an object in JSON format
 function serObject(obj , file){
   try {
@@ -140,15 +237,36 @@ function serObject(obj , file){
   }
 }
 
+var jsonList = [];
+let entry = new Form(
+  "System-gen",//first name
+  "dummy-user",//last name
+   '00110000',//phone number
+   42,//house number
+   'BN 101',//postCode
+   'dummySYS',//username
+   42,//age
+   'sys@sysfs@null.com',//email
+   'other',//ethinicity
+   'undefined',
+   'NAN',//first appointments
+   'NAN',//second appointment
+    '-1,0',//weeks
+    'saturday',//saturday
+    'binary'//gender
+    );
+    jsonList.push(entry);
 // read database into memory
 try{
 let file = fs.readFileSync('database.JSON','utf8');
 //record changes to the database via an object
-var jsonList = JSON.parse(file);
+jsonList = JSON.parse(file);
 }catch(err){
   console.log(err);
+  console.log('current data base lost attempting to create a new database');
+
 }
-//uses regex to find numbers in any given string
+
 
 client.get('/',function(req,res){
 console.log("client on homepage");
@@ -175,7 +293,7 @@ function assignTimeSlots(requestObject , entryObject){
     return errorMsg;
 
   }
-
+   // checks to see if either appointment slots have been left empty
   if ((fA == null && fP == null)||(sA == null && sP == null)){
     errorMsg = "You must book two appointments one week apart";
   }
@@ -197,6 +315,7 @@ function assignTimeSlots(requestObject , entryObject){
   }
   return errorMsg;
 }
+//validates gender , if more than one gender is selected on form user is advised to select the non-binary option
 function assignGender(entryObject,male,female,nBinary){
   errorMsg = "NO_ERROR";
   genders = [male,female,nBinary];
@@ -224,7 +343,7 @@ function assignGender(entryObject,male,female,nBinary){
 }
 
 client.post('/booking-signup',[
-  // replaces special characters with their html counterparts
+  // replaces '\/'special characters with empty space
   body('fName').trim().escape().isLength({min :2}),
   body('lName').trim().escape().isLength({min : 2}),
   body('phoneNum').trim().escape().isLength({min:8}),
@@ -244,21 +363,20 @@ client.post('/booking-signup',[
    const errors = validationResult(req);
 
    if(!errors.isEmpty()){
-      return res.status(400).json({errors: errors.array() });
-   }
+
+     error = errors.array();
+
+     return createValidatorErrorMsg(res,error[0].param);
+     }
+
+
  let errs = "";
  res.set('Content-Type','text/html');
- console.log(req.body.male + ": male button");
- console.log(req.body);
- console.log("male: " + req.body.male);
- console.log("female: "+ req.body.female);
- console.log("nonbinary: "+ req.body.nonbinary);
- console.log("ethnicity: " + req.body.ethnicity);
+
   errs = validateBodyMember(req.body.fName,TEXT);
-  console.log(req.body.fName);
-  console.log(errs);
+
   if (errs != "NO_ERROR"){
-    console.log(errs);
+
       return createErrorMsg(res,"first name",errs);
   }
 
@@ -332,6 +450,9 @@ if (errs != "NO_ERROR"){
   jsonList.push(newEntry);
   serObject(jsonList , 'database.JSON');
   console.log('account logged');
+  console.log("email "+ newEntry.email);
+
+
 
    res.send(responce);
 });

@@ -22,6 +22,7 @@
     "express-validator": "^6.7.0",
     "fs": "0.0.1-security",
     "graceful-fs": "^4.2.4",
+    "nodemailer": "^6.4.17",
     "rwlock": "^5.0.0"
   }
 }
