@@ -11,7 +11,6 @@ body{
     margin: 0;
     padding: 0;
     background-color: #c2caca;
-    color: white;
     background-image: url("images/assignment2_covid.png");
     background-size: cover;
 }
@@ -67,6 +66,52 @@ li a:hover {
     background-color: #333537;
     color: #90ee90;
     transition: 1s;
+}
+/* index.html*/
+main{
+    background-color: #FFFFE0;
+    color: black;
+}
+#h2{
+    padding: 20px;
+    position: relative;
+    display: block;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: xx-large;
+    width: fit-content
+}
+.info{
+    padding: 14px 10px;
+    font-family: BlinkMacSystemFont, Arial, sans-serif;
+    font-size: 20px;
+    width: 90%;
+    text-align: center;
+    transform: translate(-50%,0);
+    margin-left: 50%;
+}
+#pics{
+    display: flex;
+    background-color: grey;
+    width: 100%;
+}
+.pic_wrapper{
+    width: 33.33%;
+}
+.pics{
+    width: 100%;
+}
+.pics:hover{
+    transition: 1s;
+    opacity: 0.2;
+}
+@media only screen and (max-width: 600px){
+    li{
+        float: none;
+    }
+    #signup_button{
+        width: 150px;
+    }
 }
 /* Sign up Form CSS*/
 input, button{
@@ -124,58 +169,44 @@ button:hover{
 #radio{
     display: flex;
 }
-/* index.html*/
-.info{
-    padding: 14px 10px;
-    background-color: #333537;
-    color: white;
-    font-family: BlinkMacSystemFont, Arial, sans-serif;
-    font-size: 20px;
-    width: 57%;
-    margin: 30px;
+/* CSS for team.html*/
+.profile_pic_wrapper{
+    background-color: #0e0e1d;
+    width: 100%;
+    justify-content: space-around;
 }
-#tubes{
-    width: 450px;
-    position: absolute;
-    right: 7.5%;
-    top: 400px;
-    z-index: -2;
+.profile_pic{
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    object-fit: cover;
+    padding: 20px;
 }
-#doctor{
-    width: 450px;
-    position: absolute;
-    right: 7.5%;
-    top: 800px;
-    margin-bottom: 20px;
-    z-index: -2;
+.profile_pic:hover{
+    opacity: 50%;
+    transition: 2s;
 }
-@media only screen and (max-width: 1024px){
-    .info{
-        padding: 14px 10px;
-        background-color: #333537;
-        color: white;
-        font-family: BlinkMacSystemFont, Arial, sans-serif;
-        font-size: x-large;
-        width: 100%;
-        margin: 30px;
-    }
-    #tubes{
-        display: none;
-        width: 500px;
-        position: absolute;
-        right: 7.5%;
-        top: 400px;
-        z-index: -2;
-    }
-    #doctor{
-        display: none;
-        width: 500px;
-        position: absolute;
-        right: 7.5%;
-        top: 800px;
-        margin-bottom: 20px;
-        z-index: -2;
-    }
+#caleb_about{
+    background-color: #fcf9f5;
+    width: 100%;
+    height: 600px;
+    margin: 0;
+    padding: 20px;
+    display: none;
 }
-
-
+#ercan_about{
+    background-color: #fcf9f5;
+    width: 100%;
+    height: 600px;
+    margin: 0;
+    padding: 20px;
+    display: none;
+}
+#chidz_about{
+    background-color: #fcf9f5;
+    width: 100%;
+    height: 600px;
+    margin: 0;
+    padding: 20px;
+    display: none;
+}

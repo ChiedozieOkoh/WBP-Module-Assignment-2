@@ -1,8 +1,3 @@
-// Add sign up form pop up
-/*function addSign_up_form(){
-    const form_sign_up = document.getElementById("form_sign-up").style.display="block";
-}*/
-
 function validate_form(){
     if (document.forms[0].email.value===''){
         alert("Please Provide An Email Address");
@@ -10,14 +5,18 @@ function validate_form(){
     }//End if statement
     return true;
 }
-function make_big(){
-    if (document.getElementById("tubes").style.width === "450px"){
-        document.getElementById("tubes").style.width = "500px"
-    }
-    else document.getElementById("tubes").style.width = "450px";}
-function make_big2(){
-    if (document.getElementById("doctor").style.width === "450px"){
-        document.getElementById("doctor").style.width = "500px"
-    }
-    else document.getElementById("doctor").style.width = "450px";
+function display_caleb(){
+    document.getElementById("ercan_about").style.display = "none";
+    document.getElementById("chidz_about").style.display = "none";
+    document.getElementById("caleb_about").style.display = "block";
+}
+function display_ercan(){
+    document.getElementById("caleb_about").style.display = "none";
+    document.getElementById("chidz_about").style.display = "none";
+    document.getElementById("ercan_about").style.display = "block";
+}
+function display_chidz(){
+    document.getElementById("caleb_about").style.display = "none";
+    document.getElementById("ercan_about").style.display = "none";
+    document.getElementById("chidz_about").style.display = "block";
 }
