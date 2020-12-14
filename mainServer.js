@@ -65,7 +65,7 @@ function containsSpecialChars(inputString){
 }
 
 function validateBodyMember(element,indexOfDatatype){
-  var errorMessage = "NO_ERROR";
+  let errorMessage = "NO_ERROR";
 
   if (indexOfDatatype > -1 && indexOfDatatype < 3){
     switch (indexOfDatatype){
@@ -76,7 +76,7 @@ function validateBodyMember(element,indexOfDatatype){
           return errorMessage;
         }
         if(containsNumber(element)){
-          errorMessage = "no integral types allowed";
+          errorMessage = "no numerical types allowed";
           return errorMessage;
         }
         if(containsSpecialChars(element)){
@@ -104,7 +104,7 @@ function validateBodyMember(element,indexOfDatatype){
         if(containsSpace(element)){
           errorMessage ="no spaces allowed";
           return errorMessage;
-        }
+       }
         if(containsSpecialChars(element)){
           errorMessage ="no special characters allowed";
           return errorMessage;
@@ -170,7 +170,7 @@ function createValidatorErrorMsg( responceObj , field){
     responceObj.status(400);
     responceObj.write('<html>');
     responceObj.write('<body>');
-    responceObj.write('<h1>Error in house number: field cannot be left empty< /h1>');
+    responceObj.write('<h1>Error in house number: field cannot be left empty</h1>');
     responceObj.write('</body>');
     responceObj.write('</html>');
     responceObj.end();
@@ -231,6 +231,10 @@ function createValidatorErrorMsg( responceObj , field){
 //writes an object in JSON format
 function serObject(obj , file){
   try {
+    //sourced from :
+    //https://nodejs.org/api/fs.html#fs_fs_writefilesync_file_data_options
+    // last accessed on : 13/12/20
+    // adaptations : changed parameters to match my use case
     fs.writeFileSync(file,JSON.stringify(obj));
   }catch(err){
     console.log(err);
@@ -258,6 +262,10 @@ let entry = new Form(
     jsonList.push(entry);
 // read database into memory
 try{
+  // sourced from :
+  //https://nodejs.org/api/fs.html#fs_fs_readfilesync_path_options
+  // last accessed on 13/12/20
+  //adaptations: changed statement to include file , passed encoding to the options parameters
 let file = fs.readFileSync('database.JSON','utf8');
 //record changes to the database via an object
 jsonList = JSON.parse(file);
@@ -268,15 +276,7 @@ jsonList = JSON.parse(file);
 }
 
 
-client.get('/',function(req,res){
-console.log("client on homepage");
-});
 
-client.get('/:foo/book',function (req , res){
-  //user is requesting a form
-  const name = req.params.foo;
-  res.send('oh '+ name + ' we got your get request');
-});
 
 
 function assignTimeSlots(requestObject , entryObject){
@@ -344,6 +344,12 @@ function assignGender(entryObject,male,female,nBinary){
 
 client.post('/booking-signup',[
   // replaces '\/'special characters with empty space
+  //---
+  // sourced from 
+  //https://express-validator.github.io/docs/
+  // last accessed 30/11/20
+  //adaptations : changed variables to match fields in form requesting
+  //changed min parameter to appropriate values
   body('fName').trim().escape().isLength({min :2}),
   body('lName').trim().escape().isLength({min : 2}),
   body('phoneNum').trim().escape().isLength({min:8}),
@@ -353,6 +359,7 @@ client.post('/booking-signup',[
   body('age').trim().escape().isLength({min:1}),
   body('email').trim().escape().isEmail(),
   body('pwd').trim().escape().isLength({min:3})
+  //---
 ],function(req,res){
   //user wants to submit form data
    console.log('got a form submission');
