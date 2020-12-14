@@ -38,6 +38,14 @@ class Form{
     }
 }
 //methods to validate form input
+// regex for character classes sourced from :
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Character_Classes
+// last accessed : 13/12/20
+
+// regexNum.test syntax sourced from :
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
+//last accessed : 13/12/20
+// adaptations : changed to work with the input of a function
 function containsNumber(inputString){
 
   let regexNum = /[0-9]/ ;
@@ -345,7 +353,7 @@ function assignGender(entryObject,male,female,nBinary){
 client.post('/booking-signup',[
   // replaces '\/'special characters with empty space
   //---
-  // sourced from 
+  // sourced from
   //https://express-validator.github.io/docs/
   // last accessed 30/11/20
   //adaptations : changed variables to match fields in form requesting
