@@ -129,6 +129,10 @@ function isInDatabase(email){
 }
 // returns a html message that can be render as a responce to the user's form
 function createErrorMsg(responceObj ,field , error){
+  // approach sourced from :
+  //https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+  // last accessed : 13/12/20
+  //adaptations: function paramters allow for display of custom error messages
 
      responceObj.status(400);
      responceObj.write('<html>');
